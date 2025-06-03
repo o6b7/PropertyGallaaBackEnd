@@ -1,24 +1,10 @@
 # PropertyGallaaBackEnd
 Backend for PropertyGalla – a real estate platform supporting user authentication, property listings, and agent management via a RESTful API. It uses ASP.NET and AWS (Elastic Beanstalk, S3, Lambda, RDS) with JWT-based authentication.
 
-PropertyGalla Backend Documentation
-Table of Contents
+# PropertyGalla Backend Documentation
 
-Project Overview
-Technology Stack
-API Documentation
-Authentication
-Users
-Properties
-Feedback
-Reports
-Saved Properties
-View Requests
-AWS Services Integration
-Deployment
-Development Setup
-Security Considerations
-Project Overview
+
+## Project Overview
 
 PropertyGalla is a comprehensive real estate platform backend that provides:
 
@@ -30,7 +16,8 @@ Property saving functionality
 View request scheduling
 The backend is built with ASP.NET Core and leverages various AWS services for scalability and reliability.
 
-Technology Stack
+
+## Technology Stack
 
 Backend Framework: ASP.NET Core
 Database: Amazon RDS (Relational Database Service)
@@ -41,9 +28,12 @@ Deployment: AWS Elastic Beanstalk
 Additional Services:
 AWS CloudWatch (Logging)
 AWS IAM (Identity and Access Management)
-API Documentation
 
-Authentication
+
+## API Documentation
+
+
+## Authentication
 
 POST /api/users/login
 
