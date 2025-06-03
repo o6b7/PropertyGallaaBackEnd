@@ -22,7 +22,7 @@ Backend for PropertyGalla – a real estate platform supporting user authenticat
 
 ### Installation
 1. Clone the repository:
-   git clone https://github.com/yourusername/PropertyGallaBackend.git
+   git clone https://github.com/o6b7/PropertyGallaaBackEnd.git
 Navigate to the project directory:
 bash
 cd PropertyGallaBackend
@@ -33,9 +33,11 @@ Configure appsettings.json with your database and AWS credentials
 Run the application:
 bash
 dotnet run
-API Documentation
 
-Authentication
+
+# API Documentation
+
+## Authentication
 
 POST /api/users/login
 
@@ -59,6 +61,7 @@ json
     "createdAt": "2023-01-01T00:00:00"
   }
 }
+
 POST /api/users/register
 
 Description: Register a new user
@@ -71,7 +74,9 @@ json
   "phone": "1234567890",
   "role": "user"
 }
-Properties
+
+
+# Properties
 
 GET /api/properties
 
@@ -104,7 +109,9 @@ Neighborhood: Neighborhood
 Price: Property price
 OwnerId: Owner user ID
 Images[]: Array of image files
-Feedback
+
+
+# Feedback
 
 GET /api/feedback
 
@@ -127,7 +134,9 @@ json
   "rating": 5,
   "comment": "Great service!"
 }
-Reports
+
+
+# Reports
 
 POST /api/reports
 
@@ -149,7 +158,9 @@ json
   "status": "resolved",
   "note": "Issue has been fixed"
 }
-View Requests
+
+
+# View Requests
 
 POST /api/viewrequests
 
@@ -169,7 +180,9 @@ json
 {
   "status": "approved"
 }
-AWS Deployment
+
+
+# AWS Deployment
 
 Elastic Beanstalk Setup
 
@@ -177,26 +190,33 @@ Create new application in Elastic Beanstalk
 Configure environment with .NET platform
 Set environment variables for database and JWT configuration
 Deploy application package
-RDS Configuration
 
-Create PostgreSQL/MySQL database
+
+# RDS Configuration
+
+Create MySQL database
 Configure security group to allow connections from EB environment
 Set connection string in appsettings.json
-S3 Configuration
+
+
+# S3 Configuration
 
 Create bucket for property images
 Configure CORS policy
 Set up IAM permissions for application
-API Gateway Setup
+
+
+# API Gateway Setup
 
 Create new REST API
 Configure resources and methods
 Set up integration with EB environment
-Deploy API
+
+
+# Deploy API
+
 Database Schema
-
 The database includes tables for:
-
 Users
 Properties
 PropertyImages
@@ -204,23 +224,16 @@ Feedbacks
 Reports
 SavedProperties
 ViewRequests
-Security
 
+
+# Security
 JWT authentication with 1-hour expiration
+
 Role-based authorization (user, agent, admin)
 Password hashing with bcrypt
 Input validation on all endpoints
 CORS policy configuration
-Contributing
 
-Fork the repository
-Create your feature branch (git checkout -b feature/AmazingFeature)
-Commit your changes (git commit -m 'Add some AmazingFeature')
-Push to the branch (git push origin feature/AmazingFeature)
-Open a Pull Request
-License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 
 This README provides:
@@ -228,6 +241,5 @@ This README provides:
 2. Detailed API documentation for all endpoints
 3. AWS deployment instructions
 4. Security information
-5. Contribution guidelines
 
-The markdown format ensures proper rendering on GitHub with clear section headings and code blocks for API examples. You can extend any section as needed, particularly the AWS deployment details which can be made more specific to your actual configuration.
+
