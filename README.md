@@ -76,7 +76,7 @@ json
 }
 
 
-# Properties
+## Properties
 
 GET /api/properties
 
@@ -111,7 +111,7 @@ OwnerId: Owner user ID
 Images[]: Array of image files
 
 
-# Feedback
+## Feedback
 
 GET /api/feedback
 
@@ -136,7 +136,7 @@ json
 }
 
 
-# Reports
+## Reports
 
 POST /api/reports
 
@@ -160,7 +160,7 @@ json
 }
 
 
-# View Requests
+## View Requests
 
 POST /api/viewrequests
 
@@ -184,7 +184,7 @@ json
 
 # AWS Deployment
 
-Elastic Beanstalk Setup
+## Elastic Beanstalk Setup
 
 Create new application in Elastic Beanstalk
 Configure environment with .NET platform
@@ -192,28 +192,28 @@ Set environment variables for database and JWT configuration
 Deploy application package
 
 
-# RDS Configuration
+## RDS Configuration
 
 Create MySQL database
 Configure security group to allow connections from EB environment
 Set connection string in appsettings.json
 
 
-# S3 Configuration
+## S3 Configuration
 
 Create bucket for property images
 Configure CORS policy
 Set up IAM permissions for application
 
 
-# API Gateway Setup
+## API Gateway Setup
 
 Create new REST API
 Configure resources and methods
 Set up integration with EB environment
 
 
-# Deploy API
+## Deploy API
 
 Database Schema
 The database includes tables for:
@@ -226,7 +226,7 @@ SavedProperties
 ViewRequests
 
 
-# Security
+## Security
 JWT authentication with 1-hour expiration
 
 Role-based authorization (user, agent, admin)
