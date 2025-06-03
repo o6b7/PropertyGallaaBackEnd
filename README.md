@@ -238,7 +238,7 @@ AWS Services Integration
 
 Amazon RDS
 
-Hosts the PostgreSQL database
+Hosts the MYSQL database
 Configuration in appsettings.json:
 json
 "ConnectionStrings": {
@@ -280,8 +280,8 @@ eb deploy
 Development Setup
 
 Prerequisites:
-.NET 6 SDK
-PostgreSQL
+.NET 8 SDK
+MYSQL
 AWS CLI (for local development with AWS services)
 Setup:
 bash
@@ -309,18 +309,21 @@ AWS__AccessKey: AWS access key
 AWS__SecretKey: AWS secret key
 Security Considerations
 
-JWT Configuration:
+# JWT Configuration:
 Tokens expire after 1 hour
 Strong secret key required
 HTTPS mandatory in production
-Data Protection:
+
+# Data Protection:
 All passwords are hashed using PBKDF2 with HMAC-SHA256
 Sensitive data encrypted in transit and at rest
-API Security:
+
+# API Security:
 Role-based authorization
 Input validation on all endpoints
 Rate limiting recommended (implement via AWS API Gateway)
-AWS Best Practices:
+
+# AWS Best Practices:
 Least privilege IAM roles
 RDS in private subnet
 S3 bucket policies with proper access controls
