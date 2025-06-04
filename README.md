@@ -56,7 +56,7 @@ Built with **ASP.NET Core** and deployed on various **AWS services**, including 
 
 ---
 
-## API Documentation
+## API Documentation (Most important APIs only, you can explore the rest in the code)
 
 ### Authentication
 
