@@ -1,55 +1,79 @@
+# PropertyGalla Backend
+
 ## Overview
-Backend for PropertyGalla – a real estate platform supporting user authentication, property listings, and agent management via a RESTful API. Built with ASP.NET Core and deployed on AWS services including Elastic Beanstalk, S3, Lambda, RDS, and API Gateway with JWT-based authentication.
+
+**PropertyGalla** is a backend system for a real estate platform that supports user authentication, property listings, feedback, and agent management via a RESTful API.  
+Built with **ASP.NET Core** and deployed on various **AWS services**, including Elastic Beanstalk, S3, Lambda, RDS, and API Gateway. JWT is used for secure authentication and role-based access control.
+
+---
 
 ## Technologies Used
+
 - **Backend Framework**: ASP.NET Core
 - **Database**: Amazon RDS (MySQL)
 - **Authentication**: JWT (JSON Web Tokens)
 - **File Storage**: Amazon S3
-- **Compute**: AWS Lambda for servless functions
+- **Compute**: AWS Lambda
 - **API Gateway**: AWS API Gateway
 - **Deployment**: AWS Elastic Beanstalk
 - **Networking**: Amazon VPC
 - **Security**: Role-based access control
 
+---
+
 ## Getting Started
 
 ### Prerequisites
-- .NET 8.0 SDK 
-- AWS Account with necessary permissions
-- MySQL database
-- AWS CLI configured
+
+- .NET 8.0 SDK  
+- AWS Account with required permissions  
+- MySQL database  
+- AWS CLI configured  
 
 ### Installation
-1. Clone the repository:
+
+1. **Clone the Repository**
+   ```bash
    git clone https://github.com/o6b7/PropertyGallaaBackEnd.git
-Navigate to the project directory:
-bash
-cd PropertyGallaBackend
-Install dependencies:
-bash
-dotnet restore
-Configure appsettings.json with your database and AWS credentials
-Run the application:
-bash
-dotnet run
+   cd PropertyGallaBackend
+   ```
 
+2. **Install Dependencies**
+   ```bash
+   dotnet restore
+   ```
 
-# API Documentation
+3. **Configure**
+   - Update `appsettings.json` with:
+     - MySQL connection string
+     - JWT secret key
+     - AWS credentials
 
-## Authentication
+4. **Run the Application**
+   ```bash
+   dotnet run
+   ```
 
-POST /api/users/login
+---
 
-Description: Authenticate user and get JWT token
-Request Body:
-json
+## API Documentation
+
+### Authentication
+
+#### `POST /api/users/login`
+
+Authenticate user and return JWT token.
+
+**Request Body:**
+```json
 {
   "email": "user@example.com",
   "password": "password123"
 }
-Response:
-json
+```
+
+**Response:**
+```json
 {
   "token": "jwt_token_here",
   "user": {
@@ -61,12 +85,16 @@ json
     "createdAt": "2023-01-01T00:00:00"
   }
 }
+```
 
-POST /api/users/register
+---
 
-Description: Register a new user
-Request Body:
-json
+#### `POST /api/users/register`
+
+Register a new user.
+
+**Request Body:**
+```json
 {
   "name": "John Doe",
   "email": "user@example.com",
@@ -74,172 +102,195 @@ json
   "phone": "1234567890",
   "role": "user"
 }
+```
 
+---
 
-## Properties
+### Properties
 
-GET /api/properties
+#### `GET /api/properties`
 
-Description: Get paginated list of properties with filtering options
-Query Parameters:
-title: Filter by property title
-state: Filter by state
-city: Filter by city
-rooms: Filter by number of rooms
-bathrooms: Filter by number of bathrooms
-parking: Filter by parking spaces
-minArea/maxArea: Filter by area range
-minPrice/maxPrice: Filter by price range
-page: Page number (default: 1)
-pageSize: Items per page (default: 5)
-POST /api/properties/with-files
+Get paginated list of properties with filtering.
 
-Description: Create a new property with images (multipart form)
-Headers: Authorization: Bearer <token>
-Form Data:
-Title: Property title
-Description: Property description
-Rooms: Number of rooms
-Bathrooms: Number of bathrooms
-Parking: Number of parking spaces
-Area: Property area
-State: State location
-City: City location
-Neighborhood: Neighborhood
-Price: Property price
-OwnerId: Owner user ID
-Images[]: Array of image files
+**Query Parameters:**
 
+- `title`, `state`, `city`, `rooms`, `bathrooms`, `parking`
+- `minArea`, `maxArea`, `minPrice`, `maxPrice`
+- `page` (default: 1), `pageSize` (default: 5)
 
-## Feedback
+---
 
-GET /api/feedback
+#### `POST /api/properties/with-files`
 
-Description: Get paginated feedback with filtering
-Query Parameters:
-ownerId: Filter by owner ID
-reviewerId: Filter by reviewer ID
-rating: Filter by exact rating
-minRating: Filter by minimum rating
-page: Page number (default: 1)
-pageSize: Items per page (default: 5)
-POST /api/feedback
+Create a property listing with images.
 
-Description: Submit new feedback (requires authentication)
-Request Body:
-json
+**Headers:**
+```
+Authorization: Bearer <token>
+```
+
+**Form Data:**
+
+- `Title`, `Description`, `Rooms`, `Bathrooms`, `Parking`
+- `Area`, `State`, `City`, `Neighborhood`, `Price`
+- `OwnerId`, `Images[]` (Array of image files)
+
+---
+
+### Feedback
+
+#### `GET /api/feedback`
+
+Get paginated feedback with filters.
+
+**Query Parameters:**
+
+- `ownerId`, `reviewerId`
+- `rating`, `minRating`
+- `page`, `pageSize`
+
+---
+
+#### `POST /api/feedback`
+
+Submit new feedback.
+
+**Request Body:**
+```json
 {
   "reviewerId": "USR0001",
   "ownerId": "USR0002",
   "rating": 5,
   "comment": "Great service!"
 }
+```
 
+---
 
-## Reports
+### Reports
 
-POST /api/reports
+#### `POST /api/reports`
 
-Description: Report a property (requires authentication)
-Request Body:
-json
+Report a property (authentication required).
+
+**Request Body:**
+```json
 {
   "reporterId": "USR0001",
   "propertyId": "PRO0001",
   "reason": "Incorrect information"
 }
-PUT /api/reports
+```
 
-Description: Update report status (admin only)
-Request Body:
-json
+---
+
+#### `PUT /api/reports`
+
+Update report status (admin only).
+
+**Request Body:**
+```json
 {
   "reportId": "REP0001",
   "status": "resolved",
   "note": "Issue has been fixed"
 }
+```
 
+---
 
-## View Requests
+### View Requests
 
-POST /api/viewrequests
+#### `POST /api/viewrequests`
 
-Description: Request a property viewing
-Request Body:
-json
+Request to view a property.
+
+**Request Body:**
+```json
 {
   "userId": "USR0001",
   "propertyId": "PRO0001",
   "text": "I'd like to view this property on Saturday"
 }
-PATCH /api/viewrequests/{id}/status
+```
 
-Description: Update view request status (property owner only)
-Request Body:
-json
+---
+
+#### `PATCH /api/viewrequests/{id}/status`
+
+Update view request status (property owner only).
+
+**Request Body:**
+```json
 {
   "status": "approved"
 }
+```
 
+---
 
-# AWS Deployment
+## AWS Deployment
 
-## Elastic Beanstalk Setup
+### Elastic Beanstalk Setup
 
-Create new application in Elastic Beanstalk
-Configure environment with .NET platform
-Set environment variables for database and JWT configuration
-Deploy application package
+- Create new application in Elastic Beanstalk  
+- Use .NET platform  
+- Set environment variables (DB, JWT, etc.)  
+- Deploy application via ZIP package
 
+---
 
-## RDS Configuration
+### RDS Configuration
 
-Create MySQL database
-Configure security group to allow connections from EB environment
-Set connection string in appsettings.json
+- Create a MySQL database  
+- Set security group to allow EB environment access  
+- Update connection string in `appsettings.json`
 
+---
 
-## S3 Configuration
+### S3 Configuration
 
-Create bucket for property images
-Configure CORS policy
-Set up IAM permissions for application
+- Create S3 bucket for storing property images  
+- Add proper CORS policy  
+- Configure IAM roles/permissions
 
+---
 
-## API Gateway Setup
+### API Gateway Setup
 
-Create new REST API
-Configure resources and methods
-Set up integration with EB environment
+- Create new REST API  
+- Set up resources and HTTP methods  
+- Point integration to Elastic Beanstalk endpoint
 
+---
 
-## Deploy API
+## Database Schema
 
-Database Schema
-The database includes tables for:
-Users
-Properties
-PropertyImages
-Feedbacks
-Reports
-SavedProperties
-ViewRequests
+- **Users**
+- **Properties**
+- **PropertyImages**
+- **Feedbacks**
+- **Reports**
+- **SavedProperties**
+- **ViewRequests**
 
+---
 
 ## Security
-JWT authentication with 1-hour expiration
 
-Role-based authorization (user, agent, admin)
-Password hashing with bcrypt
-Input validation on all endpoints
-CORS policy configuration
+- JWT authentication with 1-hour expiration
+- Role-based authorization (user, agent, admin)
+- Password hashing using bcrypt
+- CORS policy for cross-origin requests
+- Input validation on all endpoints
 
+---
 
+## Summary
 
 This README provides:
-1. Comprehensive project overview
-2. Detailed API documentation for all endpoints
-3. AWS deployment instructions
-4. Security information
 
-
+1. A comprehensive project overview  
+2. Detailed API documentation  
+3. AWS deployment instructions  
+4. Security best practices
