@@ -286,6 +286,14 @@ Update view request status (property owner only).
 
 ---
 
+## 👨‍💻 Developed By
+
+**Qusai Mansoor Mohammed Abdullah**  
+- 📧 Email: qusaii.abdullah@gmail.com
+- LinkedIn Profile: https://www.linkedin.com/in/qusaiabdullah/
+
+---
+
 ## Summary
 
 This README provides:
